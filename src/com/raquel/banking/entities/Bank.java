@@ -14,18 +14,18 @@ public class Bank {
     public synchronized void transfer(Customer customer, double amount, Store store) {
         customer.getAccount().withdraw(amount);
         store.getAccount().deposit(amount);
-        System.out.println(customer.getName() + " comprou em " + store.getName() + ": " + amount);
+        System.out.println(customer.getName() + " comprou em " + store.getName() + ": " + "R$" + amount);
     }
 
     public synchronized void payEmployee(Employee employee, double salary) {
         employee.getSalaryAccount().withdraw(salary);
         employee.getInvestmentAccount().deposit(salary * 0.2);
-        System.out.println(employee.getName() + " salário recebido: " + salary);
+        System.out.println(employee.getName() + " salário recebido: " + "R$" + salary);
     }
 
     public synchronized void printFinalBalances() {
         for (Store store : stores) {
-            System.out.println(store.getName() + " saldo: " + store.getAccount().getBalance());
+            System.out.println(store.getName() + " saldo: " + "R$" + store.getAccount().getBalance());
         }
     }
 
