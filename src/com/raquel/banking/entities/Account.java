@@ -27,4 +27,8 @@ public class Account {
             balance -= amount;
         }
     }
+
+    public Bank getBank() {
+        return bank;
+    }
 }
