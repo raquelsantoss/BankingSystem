@@ -11,21 +11,26 @@ public class Bank {
         this.stores = new ArrayList<>();
     }
 
-    public synchronized void transfer(Customer customer, double amount, Store store) {
+    public synchronized void transfer(Customer customer,String name, double amount, Store store) {
         customer.getAccount().withdraw(amount);
         store.getAccount().deposit(amount);
-        System.out.println(customer.getName() + " comprou em " + store.getName() + ": " + "R$" + amount);
+        System.out.println(name + " comprou em " + store.getName() + ": " + "R$" + amount);
     }
 
-    public synchronized void payEmployee(Employee employee, double salary) {
+    public synchronized void payEmployee(Employee employee,String name, double salary) {
         employee.getSalaryAccount().withdraw(salary);
         employee.getInvestmentAccount().deposit(salary * 0.2);
-        System.out.println(employee.getName() + " salário recebido: " + "R$" + salary);
+
+        double finalInvestmentBalance = employee.getInvestmentAccount().getBalance();
+
+        System.out.println(name + " recebeu: R$" + salary);
+        System.out.println("Saldo final da conta de investimento: R$" + finalInvestmentBalance);
     }
+
 
     public synchronized void printFinalBalances() {
         for (Store store : stores) {
-            System.out.println(store.getName() + " saldo: " + "R$" + store.getAccount().getBalance());
+            System.out.println(" valor arrecadado pela loja "+ store.getName() + ": " + "R$" + store.getAccount().getBalance());
         }
     }
 

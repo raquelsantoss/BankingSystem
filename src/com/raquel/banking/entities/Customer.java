@@ -22,7 +22,7 @@ public class Customer extends Thread{
             Store store = stores.get(random.nextInt(stores.size()));
             double amount = random.nextBoolean() ? 100.0 : 200.0;
             if (account.getBalance() >= amount) {
-                store.getAccount().getBank().transfer(this, amount, store);
+                store.getAccount().getBank().transfer(this,name, amount, store);
             }
         }
     }

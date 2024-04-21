@@ -18,13 +18,13 @@ public class BankingSystem {
 
         List<Customer> customers = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
-            Customer customer = new Customer("Customer " + i, bank, store1, store2);
+            Customer customer = new Customer("Cliente " + i, bank, store1, store2);
             customers.add(customer);
         }
 
         List<Employee> employees = new ArrayList<>();
         for (int i = 1; i <= 4; i++) {
-            Employee employee = new Employee("Employee " + i, store1);
+            Employee employee = new Employee("Funcionário " + i, store1);
             employees.add(employee);
             if (i % 2 == 0) {
                 employee.setStore(store2);

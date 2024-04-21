@@ -14,10 +14,9 @@ public class Employee extends Thread{
         this.investmentAccount = new Account(store.getAccount().getBank());
     }
 
-    @Override
     public void run() {
         double salary = 1400.0;
-        store.getAccount().getBank().payEmployee(this, salary);
+        store.getAccount().getBank().payEmployee(this,name, salary);
     }
 
     public void setStore(Store store) {
