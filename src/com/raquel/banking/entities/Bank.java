@@ -17,20 +17,9 @@ public class Bank {
         System.out.println(name + " comprou na " + store.getName() + ": " + "R$" + amount);
     }
 
-    public synchronized void payEmployee(Employee employee,String name, double salary) {
-        employee.getSalaryAccount().withdraw(salary);
-        employee.getInvestmentAccount().deposit(salary * 0.2);
-
-        double finalInvestmentBalance = employee.getInvestmentAccount().getBalance();
-
-        System.out.println(name + " recebeu: R$" + salary);
-        System.out.println(name + " investiu R$" + finalInvestmentBalance);
-    }
-
-
     public synchronized void printFinalBalances() {
         for (Store store : stores) {
-            System.out.println("valor arrecadado pela loja "+ store.getName() + ": " + "R$" + store.getAccount().getBalance());
+            System.out.println("Saldo da loja "+ store.getName() +  " com desconto do salário do(s) funcionário(s)" + ": " + "R$" + store.getAccount().getBalance());
         }
     }
 
