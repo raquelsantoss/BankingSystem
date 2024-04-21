@@ -12,19 +12,20 @@ public class BankingSystem {
 
     public static void main(String[] args) {
         Bank bank = new Bank();
+        Object monitor = new Object();
 
-        Store store1 = new Store("Loja 1", bank);
-        Store store2 = new Store("Loja 2", bank);
+        Store store1 = new Store("Loja 1", bank, monitor);
+        Store store2 = new Store("Loja 2", bank, monitor);
 
         List<Customer> customers = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
-            Customer customer = new Customer("Cliente " + i, bank, store1, store2);
+            Customer customer = new Customer("Cliente " + i, bank, store1, store2, monitor);
             customers.add(customer);
         }
 
         List<Employee> employees = new ArrayList<>();
         for (int i = 1; i <= 4; i++) {
-            Employee employee = new Employee("Funcionário " + i, store1);
+            Employee employee = new Employee("Funcionário " + i, store1, monitor);
             employees.add(employee);
             if (i % 2 == 0) {
                 employee.setStore(store2);
@@ -37,20 +38,27 @@ public class BankingSystem {
             customer.start();
         }
 
+        for (Customer customer : customers) {
+            try {
+                customer.join();
+                synchronized (monitor) {
+                    monitor.notifyAll();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         for (Employee employee : employees) {
             employee.start();
         }
 
-        try {
-            for (Customer customer : customers) {
-                customer.join();
-            }
-
-            for (Employee employee : employees) {
+        for (Employee employee : employees) {
+            try {
                 employee.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
         bank.printFinalBalances();

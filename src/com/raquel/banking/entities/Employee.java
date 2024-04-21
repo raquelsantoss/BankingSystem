@@ -6,17 +6,21 @@ public class Employee extends Thread{
     private Store store;
     private Account salaryAccount;
     private Account investmentAccount;
+    private Object monitor;
 
-    public Employee(String name, Store store) {
+    public Employee(String name, Store store, Object monitor) {
         this.name = name;
         this.store = store;
         this.salaryAccount = new Account(store.getAccount().getBank());
         this.investmentAccount = new Account(store.getAccount().getBank());
+        this.monitor = monitor;
     }
 
     public void run() {
         double salary = 1400.0;
-        store.getAccount().getBank().payEmployee(this,name, salary);
+        synchronized (monitor) {
+            store.getAccount().getBank().payEmployee(this, name, salary);
+        }
     }
 
     public void setStore(Store store) {
