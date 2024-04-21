@@ -25,6 +25,7 @@ public class Customer extends Thread{
                 double amount = random.nextBoolean() ? 100.0 : 200.0;
                 if (account.getBalance() >= amount) {
                     store.getAccount().getBank().transfer(this, name, amount, store);
+                    System.out.println("Saldo atual: R$" + account.getBalance());
                 }
             }
         }
