@@ -22,10 +22,12 @@ public class Employee extends Thread{
             if (store.getAccount().getBalance() >= salary) {
                 store.getAccount().withdraw(salary);
                 getSalaryAccount().deposit(salary);
-                getInvestmentAccount().deposit(salary * 0.2);
+                double investmentAmount = salary * 0.2;
+                getInvestmentAccount().deposit(investmentAmount);
+                double finalSalaryBalance = getSalaryAccount().getBalance() - investmentAmount;
                 System.out.println(name + " recebeu R$" + salary + " da " + store.getName());
-                double finalInvestmentBalance = getInvestmentAccount().getBalance();
-                System.out.println(name + " investiu R$" + finalInvestmentBalance);
+                System.out.println(name + " investiu R$" + investmentAmount);
+                System.out.println("saldo do " + name + " após investimento: R$" + finalSalaryBalance);
             }
         }
     }
