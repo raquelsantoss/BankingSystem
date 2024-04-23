@@ -14,8 +14,8 @@ public class BankingSystem {
         Bank bank = new Bank();
         Object monitor = new Object();
 
-        Store store1 = new Store("Loja 1", bank, monitor);
-        Store store2 = new Store("Loja 2", bank, monitor);
+        Store store1 = new Store("Loja A", bank, monitor);
+        Store store2 = new Store("Loja B", bank, monitor);
 
         List<Customer> customers = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
