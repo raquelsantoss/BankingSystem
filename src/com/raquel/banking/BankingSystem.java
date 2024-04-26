@@ -38,14 +38,14 @@ public class BankingSystem {
             customer.start();
         }
 
-        for (Customer customer : customers) {
+        for (Customer customer : customers) { // Iterates over each customer thread
             try {
-                customer.join();
-                synchronized (monitor) {
-                    monitor.notifyAll();
+                customer.join(); // Waits for the customer thread to finish
+                synchronized (monitor) { // Synchronizes access to the monitor
+                    monitor.notifyAll(); // Notifies all threads waiting on the monitor
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException e) { // Catches InterruptedException if the thread is interrupted while waiting
+                e.printStackTrace(); // Prints the stack trace of the exception
             }
         }
 

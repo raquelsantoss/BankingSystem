@@ -11,10 +11,10 @@ public class Bank {
         this.stores = new ArrayList<>();
     }
 
-    public synchronized void transfer(Customer customer,String name, double amount, Store store) {
-        customer.getAccount().withdraw(amount);
-        store.getAccount().deposit(amount);
-        System.out.println(name + " comprou na " + store.getName() + ": " + "R$" + amount);
+    public synchronized void transfer(Customer customer, String name, double amount, Store store) {
+        customer.getAccount().withdraw(amount); // Withdraws the amount from the customer's account
+        store.getAccount().deposit(amount); // Deposits the amount into the store's account
+        System.out.println(name + " comprou na " + store.getName() + ": " + "R$" + amount); // Prints the purchase information
     }
 
     public synchronized void printFinalBalances() {

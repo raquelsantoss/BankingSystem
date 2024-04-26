@@ -18,14 +18,14 @@ public class Customer extends Thread{
     }
 
     public void run() {
-        Random random = new Random();
-        while (account.getBalance() > 0) {
-            synchronized (monitor) {
-                Store store = stores.get(random.nextInt(stores.size()));
-                double amount = random.nextBoolean() ? 100.0 : 200.0;
-                if (account.getBalance() >= amount) {
-                    store.getAccount().getBank().transfer(this, name, amount, store);
-                    System.out.println("Saldo atual: R$" + account.getBalance());
+        Random random = new Random(); // Creates a Random object to generate random values
+        while (account.getBalance() > 0) { // While the account balance is greater than zero
+            synchronized (monitor) { // Synchronizes access to the monitor to ensure mutual exclusion
+                Store store = stores.get(random.nextInt(stores.size())); // Selects a random store
+                double amount = random.nextBoolean() ? 100.0 : 200.0; // Generates a random amount of either 100.0 or 200.0
+                if (account.getBalance() >= amount) { // Checks if the balance is sufficient for the purchase
+                    store.getAccount().getBank().transfer(this, name, amount, store); // Transfers the amount to the store
+                    System.out.println("Saldo atual: R$" + account.getBalance()); // Prints the current balance of the account
                 }
             }
         }
