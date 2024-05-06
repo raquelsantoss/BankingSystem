@@ -4,16 +4,23 @@
 Sistema bancário utilizando conceitos de programação concorrente (threads, monitores, métodos de sincronização, entre outros). 
 
 
-## Estrutura:
-- banking (pacote)
-  - BankingSystem.java (main)
-    - entities (pacote)
-      - Account.java
-      - Bank.java
-      - Customer.java
-      - Employee.java
-      - Store.java
+## Estrutura de Pastas
 
+``` bash
+.
+├── src
+│   ├── Banking
+│   │   └── BankingSystem.java (main)
+│   ├── entities
+│   │   ├── Account.java
+│   │   ├── Bank.java
+│   │   ├── Customer.java
+│       ├── Store.java
+│       └── Employee.java
+│   
+│       
+└── README.md
+```
 
 
 # Requisitos do projeto
